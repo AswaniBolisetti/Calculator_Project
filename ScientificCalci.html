@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<script type="text/javascript">
+		function ac()
+{
+	document.getElementById("display").value = "" ;
+}
+function show(input)
+{
+	document.getElementById("display").value += input;
+
+}
+function solve()
+{
+	var an = document.getElementById("display").value;
+	if (an.substring(0,4) == "sin("){
+		var ans = sin(an.charAt(4))
+		document.getElementById("display").value = ans;
+	}
+	else if(an.substring(0,4) == "cos("){
+		var ans = cos(an.charAt(4))
+		document.getElementById("display").value = ans;
+	}
+	else if(an.substring(0,4) == "tan("){
+		var ans = tan(an.charAt(4))
+		document.getElementById("display").value = ans;
+	}
+	else if(an.substring(0,4) == "log("){
+		var ans = log(an.charAt(4))
+		document.getElementById("display").value = ans;
+	}
+	var ans = eval(document.getElementById("display").value);
+	if(!isFinite(ans)){
+		document.getElementById("display").value = "Division error";
+	}
+	else{
+	document.getElementById("display").value = ans; 
+	}
+
+}
+function del()
+{
+	var oldValue = document.getElementById("display").value;
+	var newValue = oldValue.slice(0,-1);
+	document.getElementById("display").value = newValue;
+}
+function sin(val) {
+	var ans = Math.sin(val);
+	return ans;
+}
+function cos(val) {
+	var ans = Math.cos(val);
+	return ans;
+}
+function tan(val) {
+	var ans = Math.tan(val);
+	return ans;
+}
+function log(val) {
+	var ans = Math.log(val);
+	return ans;
+}
+function e(){
+	document.getElementById("display").value = 2.71828182846;
+}
+function fact(){
+	var k,ans = 1;
+	var ele = document.getElementById("display").value;
+	for(k = 1;k<=ele;k++){
+		ans = ans * k
+	}
+	document.getElementById("display").value = ans;
+}
+
+	</script>
+	<style type="text/css">
+		body{
+			background-image: linear-gradient(to right,#BAE1E0,white);
+		}
+		#calci{
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+			min-height: 70vh;
+			display: flex;
+			background-image: linear-gradient(to right,#BAE1E0,white);
+       
+		}
+		.container{
+			border-radius:8px;
+			text-align: center;
+			padding: 5px;
+			max-width: 280px;
+			margin: 0 auto;
+			border: none;
+			background-color: white;
+			transition: box-shadow 0.5s;            
+                        
+
+		}
+		.container:hover{
+			box-shadow: 
+			            12px 12px 30px gray;
+			            
+			            
+		}
+		.num{
+			border: none;
+			outline: none;
+			
+			background-image: linear-gradient(white,skyblue);
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			padding: 10%;
+			font-size: 1.1rem;
+			box-shadow: 12px 12px 17px #C8D0D0;
+			transition: color 0.5s, background-image 0.5s,font-size 0.3s;
+		}
+		.num:hover {
+        background-image: linear-gradient(to right,skyblue,white);
+        font-size: 1.2rem;
+    }
+		#display{
+			border: none;
+			height: 90px;
+			outline: none;
+			text-align: right;
+			width: 100%;
+			font-size: 2rem;
+			margin: 0;
+			border-radius: 8px;
+			background-color:  #ecf0f1;
+		    color: #333333;
+			box-sizing: border-box;
+			
+
+
+
+		}
+		#cd{
+			background-image: linear-gradient(white,#F887BC);
+		}
+		#cd:hover {
+        background-image: linear-gradient(to right,#F479B3,white);
+        font-size: 1.2rem;
+    }
+		#fc{
+		    
+		}
+		#eql{
+			background-image: linear-gradient(white,#A0E78A);
+		}
+		#eql:hover {
+       background-image: linear-gradient(to right,#A0E78A,white);
+        font-size: 1.2rem;
+    }
+	</style>
+</head>
+<body>
+	<div id="calci">
+	<table class="container" cellspacing="10" border="0">
+		<caption><h2 style="font-family: sans-serif; color: black; margin-top: 3px; margin-bottom: 7px;">CALCULATOR</h2></caption>
+		<tr class="btn">
+			<td colspan="4"><input id="display" placeholder="0" type="text"></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num" id="fc" onclick="fact()">x!</button></td>
+			<td><button class="num" id="fc" onclick="e()">e</button></td>
+			<td><button class="num" id="cd" onclick="del()">Del</button></td>
+			<td><button class="num" id="cd" onclick="ac()">AC</button></td>
+		</tr>
+
+		<tr class="btn">
+			<td><button class="num" id="fc" onclick="show('sin(')">Sin</button></td>
+			<td><button class="num" id="fc" onclick="show('cos(')">Cos</button></td>
+			<td><button class="num" id="fc" onclick="show('tan(')">Tan</button></td>
+			<td><button class="num" id="fc" onclick="show('log(')">Log</button></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num"  onclick="show('(')">(</button></td>
+			<td><button class="num" onclick="show(')')">)</button></td>
+			<td><button class="num" onclick="show('%')">%</button></td>
+			<td><button class="num"  onclick="show('/')">/</button></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num" onclick="show('7')"><b>7</b></button></td>
+			<td><button class="num" onclick="show('8')"><b>8</b></button></td>
+			<td><button class="num" onclick="show('9')"><b>9</b></button></td>
+			<td><button class="num" onclick="show('*')">*</button></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num" onclick="show('4')"><b>4</b></button></td>
+			<td><button class="num" onclick="show('5')"><b>5</b></button></td>
+			<td><button class="num" onclick="show('6')"><b>6</b></button></td>
+			<td><button class="num"  onclick="show('+')">+</button></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num" onclick="show('1')"><b>1</b></button></td>
+			<td><button class="num" onclick="show('2')"><b>2</b></button></td>
+			<td><button class="num" onclick="show('3')"><b>3</b></button></td>
+			<td><button class="num"  onclick="show('-')">-</button></td>
+		</tr>
+		<tr class="btn">
+			<td><button class="num" onclick="show('.')">.</button></td>
+			<td><button class="num" onclick="show('0')"><b>0</b></button></td>
+			<td><button class="num" onclick="show('00')"><b>00</b></button></td>
+			<td><button class="num" id="eql" onclick="solve()"><b>=</b></button></td>
+		</tr>
+
+	</table>
+	</div>
+	<h3 align="center" style="font-family:sans-serif;">By Aswani Bolisetti</h3>
+</body>
+</html>
